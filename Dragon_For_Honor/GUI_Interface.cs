@@ -17,7 +17,8 @@ namespace Dragon_For_Honor
         {
             Window_Menu();
             Window_Uj_Jatek();
-            
+
+            Window_Beallitasok();
         }
 
         public void Window_Keszites(Panel panel)
@@ -52,10 +53,15 @@ namespace Dragon_For_Honor
                 Menu_Manager.Menu_Valtas(Menu_Manager.Menu.Uj_Jatek);
             };
 
+            Uj_Jatek.OnClick += (Entity entity) =>
+            {
+                Menu_Manager.Menu_Valtas(Menu_Manager.Menu.Uj_Jatek);
+            };
+
             Kilepes.OnClick += (Entity kilep) =>
             {
-            
 
+                Game1.kilep=true;
               };
 
             //Window csinálás
@@ -73,7 +79,7 @@ namespace Dragon_For_Honor
 
            
             Button Vissza = new Button("Vissza");
-           
+            Konnyu.Checked=true;
             Button Jatek_Inditasa = new Button("Jatek inditasa");
 
             UserInterface.Active.AddEntity(panel);
@@ -110,11 +116,37 @@ namespace Dragon_For_Honor
         }
         public void Window_Beallitasok()
         {
+            Panel panel = new Panel(new Vector2(600, 500));
+            Header fent_kozep = new Header("Beallitasok", Anchor.TopCenter);
+            
+ 
 
-        }
-        public void Window_Kilepes()
-        {
 
+            Button Vissza = new Button("Vissza");
+ 
+             
+
+            UserInterface.Active.AddEntity(panel);
+
+
+
+
+
+
+            panel.AddChild(fent_kozep);
+ 
+ 
+             
+            panel.AddChild(Vissza);
+
+            Vissza.OnClick += (Entity vissza) =>
+            {
+                Menu_Manager.Menu_Valtas(Menu_Manager.Menu.Fo_Menu);
+            };
+
+
+            Window_Keszites(panel);
         }
+        
     }
 }

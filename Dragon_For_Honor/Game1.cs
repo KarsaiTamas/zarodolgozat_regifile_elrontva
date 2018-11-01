@@ -13,6 +13,11 @@ namespace Dragon_For_Honor
 
     public  class Game1 : Game
     {
+        public static bool kilep = false;
+        public void Kilepes()
+        {
+            kilep = true;
+        }
          public void Kilep()
         {
             this.Exit();
@@ -82,7 +87,10 @@ namespace Dragon_For_Honor
             UserInterface.Active.Update(gameTime);
 
             // TODO: Add your update logic here
-
+            if (kilep==true)
+            {
+                Kilep();
+            }
             base.Update(gameTime);
         }
 

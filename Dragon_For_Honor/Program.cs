@@ -7,6 +7,8 @@ namespace Dragon_For_Honor
     /// </summary>
     public static class Program
     {
+ 
+        
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -15,6 +17,8 @@ namespace Dragon_For_Honor
         {
             using (var game = new Game1())
                 game.Run();
+                
+            
         }
     }
 }

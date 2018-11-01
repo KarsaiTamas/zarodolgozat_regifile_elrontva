@@ -1,21 +1,33 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using GeonBit.UI;
 
 namespace Dragon_For_Honor
 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    /// 
+     
+
+    public  class Game1 : Game
     {
+         public void Kilep()
+        {
+            this.Exit();
+        }
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        
+        Texture2D Fold_Sprite;
+        GUI_Interface IGUI = new GUI_Interface();
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferHeight = 768;
+            graphics.PreferredBackBufferWidth = 1024;
         }
 
         /// <summary>
@@ -27,7 +39,12 @@ namespace Dragon_For_Honor
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            graphics.PreferredBackBufferHeight = 720;
+            graphics.PreferredBackBufferWidth = 1024;
 
+            UserInterface.Initialize(Content, BuiltinThemes.hd);
+            IGUI.GUI_Betolt();
+            Menu_Manager.Menu_Valtas(Menu_Manager.Menu.Fo_Menu);
             base.Initialize();
         }
 
@@ -37,8 +54,11 @@ namespace Dragon_For_Honor
         /// </summary>
         protected override void LoadContent()
         {
+
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            Fold_Sprite = Content.Load<Texture2D>("1");
 
             // TODO: use this.Content to load your game content here
         }
@@ -59,8 +79,7 @@ namespace Dragon_For_Honor
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            UserInterface.Active.Update(gameTime);
 
             // TODO: Add your update logic here
 
@@ -73,8 +92,9 @@ namespace Dragon_For_Honor
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            GraphicsDevice.Clear(Color.Black);
+ 
+            UserInterface.Active.Draw(spriteBatch);
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
